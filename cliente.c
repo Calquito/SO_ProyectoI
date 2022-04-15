@@ -15,7 +15,8 @@
 #define SHM_SEMS "sems_shared_memory" // Nombre de la memoria compartida
 
 typedef struct{
-    char shared_var[100];
+    char shared_var[5];
+    sem_t sem1;
 } Sems;
 
 int main() {
@@ -85,6 +86,7 @@ int main() {
             putchar(file_char);
             printf("Direccion: %p", &sems->shared_var[i]);
             pointer_cont++;
+            sem_post(&sems->sem1);
         }
         
     }
